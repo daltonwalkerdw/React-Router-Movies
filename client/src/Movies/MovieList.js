@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import { Route, Link } from "react-router-dom";
+
 const MovieList = props => {
   const [movies, setMovies] = useState([])
   useEffect(() => {
@@ -29,8 +31,9 @@ const MovieList = props => {
 
 function MovieDetails({ movie }) {
   const { title, director, metascore, stars } = movie;
+  console.log(title, director, metascore, stars)
   return (
-    <div className="movie-card">
+    <Link className="movie-card" to={`movies/${movie.id}`}>
       <h2>{title}</h2>
       <div className="movie-director">
         Director: <em>{director}</em>
@@ -40,12 +43,9 @@ function MovieDetails({ movie }) {
       </div>
       <h3>Actors</h3>
 
-      {stars.map(star => (
-        <div key={star} className="movie-star">
-          {star}
-        </div>
-      ))}
-    </div>
+       
+    )}
+    </Link>
   );
 }
 
